@@ -7,8 +7,8 @@ from typing import List, TypeVar
 
 
 class Auth():
-    def __init__(self):
-        pass
+    # def __init__(self):
+    #     pass
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
@@ -38,7 +38,7 @@ class Auth():
 
         authorization_header = request.header.get('authorization')
         if authorization_header is None:
-            return None:
+            return None
         return authorization_header
             
             
