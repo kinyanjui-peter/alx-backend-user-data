@@ -27,7 +27,7 @@ else:
 def before_request():
     """action to be taken before"""
     if auth is None:
-        return
+        pass
     path = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
     if request.path not in path:
         return
