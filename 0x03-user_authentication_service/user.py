@@ -10,7 +10,7 @@ Base = declarative_base()
 class User(Base):
     """sqlalchemy named User"""
     __tablename__ = 'user'  # table name
-    
+
     id = Column(Integer, primary_key=True)
     email = Column(String, nullable=False)
     hashed_password = Column(String, nullable=False)
