@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """creation of sqlalchemy"""
-from sqlalchemy import collumn, create_engine, string, Integer
-from sqlalchemy.ext.declarative import declarative_Base
+from sqlalchemy import Column, create_engine, String, Integer
+from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_Base()
+
+Base = declarative_base()
 
 
 class User(Base):
     """sqlalchemy named User"""
-    __Tablename__ = 'user'  # table name
-    id = collumn(integer, primary_key=True)
-    email = collumn(string, nullable=False)
-    hashed_password = collumn(string, nullable=False)
-    session_id = collumn(string, nullable=True)
-    reset_token = column(string, nullable=True)
+    __tablename__ = 'user'  # table name
+    
+    id = Column(Integer, primary_key=True)
+    email = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    session_id = Column(String, nullable=True)
+    reset_token = Column(String, nullable=True)
