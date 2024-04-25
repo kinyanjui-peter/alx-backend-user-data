@@ -52,5 +52,5 @@ class DB:
         #     find_user = {if }
 
 
-if __name__ = "__main__":
-    my_db = DB()
+# if __name__ = "__main__":
+#     my_db = DB()
