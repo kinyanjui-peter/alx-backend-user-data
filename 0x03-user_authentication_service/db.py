@@ -32,7 +32,6 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-
     def add_user(self, email: str, hashed_password: str) -> User:
         """add a new user to the database"""
         new_user = User(email=email, hashed_password=hashed_password)
@@ -75,5 +74,4 @@ class DB:
             self._session.commit()
 
         except NoResultFound:
-            raise ValueError(f"No user found with id: {user_id}") from None   
-         
+            raise ValueError(f"No user found with id: {user_id}") from None
