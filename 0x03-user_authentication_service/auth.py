@@ -6,7 +6,6 @@ from db import DB
 from user import User
 
 
-
 def _hash_password(Password: str, ) -> bytes:
     """ a function that takes in password, and salt and hash it
     args:
@@ -26,7 +25,7 @@ class Auth:
 
     def __init__(self):
         self._db = DB()
-        
+
     def register_user(self, email: str, password: str) -> User:
         """Registers a new user with the provided email and password."""
         try:
@@ -36,7 +35,8 @@ class Auth:
 
             hashed_password = _hash_password(password)
 
-            new_user = self._db.add_user(email=email, hashed_password=hashed_password)
+            new_user = self._db.add_user(email=email,
+                                         hashed_password=hashed_password)
             return new_user
         except Exception as e:
             raise ValueError("User could not be registered") from e
