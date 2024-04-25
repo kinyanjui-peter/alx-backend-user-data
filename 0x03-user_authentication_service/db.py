@@ -6,9 +6,9 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 from sqlalchemy.exc import InvalidRequestError
-from sqlalchemy.orm.exc import NoResuiltFound
+from sqlalchemy.orm.exc import NoResultFound
 
-from user import Base
+from user import Base, User
 
 
 class DB:
@@ -32,21 +32,23 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    def adduser(self, email: str, hashed_password: str) -> new_user:
+    def add_user(self, email: str, hashed_password: str) -> User:
         """add a new user to the database"""
         new_user = User(email=email, hashed_password=hashed_password)
         self._session.add(new_user)
         self._session.commit()
         return new_user
-    
-    def find_user_by(sellf, **kwargs):
+
+    def find_user_by(self, **kwargs) -> User:
         """find user"""
         try:
-            user = self._session.query(user).filter_by(**kwargs).first()
+            user = self._session.query(User).filter_by(**kwargs).first()
             if not user:
-                raise NoResuiltFound('NoResultFound')
+                raise NoResultFound('NoResultFound')
             return user
         except InvalidRequestError as e:
             raise InvalidRequestError("InvalidRequestError") from e
         # for key, value in kwargs:
         #     find_user = {if }
+# if __name__ = "__main__":
+#     app.run(DB)
