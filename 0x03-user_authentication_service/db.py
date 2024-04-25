@@ -50,5 +50,7 @@ class DB:
     #         raise InvalidRequestError("InvalidRequestError") from e
         # for key, value in kwargs:
         #     find_user = {if }
+
+
 if __name__ = "__main__":
     my_db = DB()
