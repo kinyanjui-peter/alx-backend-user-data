@@ -21,6 +21,7 @@ def _hash_password(Password: str, ) -> bytes:
     hashed_password = bcrypt.hashpw(password_in_byte, bcrypt.gensalt())
     return hashed_password
 
+
 def _generate_uuid() -> str:
     """_summary_
 
@@ -53,7 +54,7 @@ class Auth:
         else:
             # if user already exists, throw error
             raise ValueError('User {} already exists'.format(email))
-    
+
     def valid_login(self, email: str, password: str) -> bool:
         """_summary_
 

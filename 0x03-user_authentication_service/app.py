@@ -40,7 +40,7 @@ def users() -> str:
 
     except Exception as e:
         return jsonify(message="User could not be registered"), 500
-    
+
 
 @app.route('/sessions', methods=['POST'])
 def login() -> str:
@@ -116,8 +116,7 @@ def update_password() -> str:
         AUTH.update_password(reset_token, new_password)
         return jsonify({"email": email, "message": "Password updated"}), 200
     except Exception:
-        abort(403)    
-
+        abort(403)
 
 
 if __name__ == "__main__":
