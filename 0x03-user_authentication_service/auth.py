@@ -9,7 +9,7 @@ from uuid import uuid4
 from typing import Union
 
 
-def _hash_password(Password: str, ) -> bytes:
+def _hash_password(Password: str) -> bytes:
     """ a function that takes in password, and salt and hash it
     args:
         password(str): password to be hashed
