@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 from sqlalchemy.exc import InvalidRequestError
-from sqlalchemy.exc import NoResultFound
+from sqlalchemy.orm.exc import NoResultFound
 
 from user import Base, User
 
@@ -33,8 +33,17 @@ class DB:
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
-        """add a new user to the database"""
+        """Add a new user to the database.
+
+        Args:
+            email (str): The email address of the new user.
+            hashed_password (str): The hashed password of the new user.
+
+        Returns:
+            User: The newly created User object.
+        """
         new_user = User(email=email, hashed_password=hashed_password)
+        # adds new user and save to DB.
         self._session.add(new_user)
         self._session.commit()
         return new_user
