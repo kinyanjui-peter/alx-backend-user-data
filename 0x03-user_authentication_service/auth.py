@@ -9,7 +9,7 @@ from uuid import uuid4
 from typing import Union
 
 
-def _hash_password(Password: str) -> bytes:
+def _hash_password(password: str) -> bytes:
     """ a function that takes in password, and salt and hash it
     args:
         password(str): password to be hashed
@@ -17,7 +17,7 @@ def _hash_password(Password: str) -> bytes:
     Returns:
         bytes: hashed password
     """
-    password_in_byte = Password.encode('utf-8')
+    password_in_byte = password.encode('utf-8')
     hashed_password = bcrypt.hashpw(password_in_byte, bcrypt.gensalt())
     return hashed_password
 
