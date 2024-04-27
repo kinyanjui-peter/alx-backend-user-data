@@ -43,7 +43,14 @@ class Auth:
         self._db = DB()
 
     def register_user(self, email: str, Password: str) -> User:
-        """Registers a new user with the provided email and password."""
+        """Registers a new user with the provided email and password.
+        Args:
+            email (str): The email address of the new user.
+            password (str): The password of the new user.
+
+        Returns:
+            User: The newly registered User object.
+        """
         try:
             # find the user with the given email
             self._db.find_user_by(email=email)
