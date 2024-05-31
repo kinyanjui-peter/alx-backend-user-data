@@ -1,44 +1,42 @@
 #!/usr/bin/env python3
 """
-this is the vasic app for the API
+Request Authorization Template
 """
-from flask import request
+import re
 from typing import List, TypeVar
 
+from flask import request as flask_request
 
-class Auth():
-    """A class that manages the api"""
+
+class Auth:
+    """Auth class"""
+
+    def __init__(self):
+        """Initialization"""
+        pass
+
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """
-        returns False - path and excluded_paths
-        """
-        if path is None:
+        """Checks whether authentication is for a given path"""
+        if not path:
             return True
-        if not excluded_paths or excluded_paths is None:
+        if not excluded_paths:
             return True
-
-        if path.endswith('/'):
-            path = path[:-1]
-
-        for excluded_paths in excluded_paths:
-            if excluded_paths.endswith('/'):
-                excluded_paths = excluded_paths[:-1]
-            if path == excluded_paths:
+        path = path.rstrip('/')
+        for excl_path in excluded_paths:
+            excl_path = excl_path.rstrip('/')
+            if excl_path.endswith('*'):
+                if path.startswith(excl_path[:-1]):
+                    return False
+            elif excl_path == path:
                 return False
         return True
 
-    def authorization_header(self, request=None) -> str:
-        """
-        auth header
-        """
-        if request is None:
-            return None
+    def authorization_header(self, request: flask_request = None) -> str:
+        """Returns the value of the authorization header of a request"""
+        if not request or 'Authorization' not in request.headers:
+            return
+        return request.headers['Authorization']
 
-        authorization_header = request.header.get('authorization')
-        if authorization_header is None:
-            return None
-        return authorization_header
-
-    def current_user(self, request=None) -> TypeVar('User'):
-        """current user"""
-        return None
+    def current_user(self, request: flask_request = None) -> TypeVar('User'):
+        """Returns the current user."""
+        return
